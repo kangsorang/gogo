@@ -3,7 +3,7 @@ package main
 import (
 	"log"
 
-	"github.com/kangsorang/gotest/pkg/apiserver"
+	"github.com/kangsorang/gogo/pkg/apiserver"
 )
 
 func main() {
