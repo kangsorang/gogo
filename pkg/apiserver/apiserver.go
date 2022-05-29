@@ -1,0 +1,28 @@
+package apiserver
+
+import (
+	"net/http"
+
+	"github.com/gorilla/mux"
+)
+
+type APIServer struct {
+	Config *Config
+	Router *mux.Router
+}
+
+func New(config *Config) *APIServer {
+	return &APIServer{
+		Config: config,
+		Router: mux.NewRouter(),
+	}
+}
+
+func (s *APIServer) Start() error {
+	s.confiureRouter()
+	return http.ListenAndServe(s.Config.BindAddr, s.Router)
+}
+
+func (s *APIServer) confiureRouter() {
+	s.Router.HandleFunc("/", s.HandleHello())
+}
